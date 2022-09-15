@@ -43,10 +43,10 @@ app.use("/api-doc",swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
 app.get("/",(req,res)=>{
     res.send("welcome Shop Team API")
 });
-
+const MONGODB=process.env.MONGODB_URI
 //mongodb
 mongoose
-    .connect(process.env.MONGODB_URI)
+    .connect(MONGODB)
     .then(()=>console.log("connected to mongodb"))
     .catch((error)=> console.error(error));
 
