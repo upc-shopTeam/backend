@@ -14,6 +14,7 @@ const router = express.Router()
  *         - img
  *         - price
  *         - stock
+ *         - category
  *       properties:
  *         id:
  *           type: string
@@ -35,7 +36,7 @@ const router = express.Router()
  *         img: www.image.com
  *         price: 30
  *         stock: 10
- *         
+ *           
  */
  /**
   * @swagger
@@ -138,7 +139,7 @@ router.get("/products/:id",(req,res)=>{
 
 /**
  * @swagger
- * api/products/{id}:
+ * /api/products/{id}:
  *  put:
  *    summary: Update the product by the id
  *    tags: [Products]
@@ -194,7 +195,7 @@ router.put("/products/:id",(req,res)=>{
  * 
  *     responses:
  *      200:
- *        description: The book was updated
+ *        description: The products was updated
  *        content:
  *          application/json:
  *            schema:
