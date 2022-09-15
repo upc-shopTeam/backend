@@ -41,7 +41,7 @@ app.use("/api-doc",swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
 
 //routes
 app.get("/",(req,res)=>{
-    res.send("welcome SHOP TEAM API")
+    res.send("welcome Shop Team API")
 });
 
 //mongodb
