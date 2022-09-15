@@ -1,18 +1,20 @@
-const express = require("express")
-const productSchema = require("./models/product")
+
+const express = require("express");
+const productSchema = require("../models/Product")
 
 const router = express.Router()
 
-//create product
+
 router.post("/products",(req, res)=>{
     const product = productSchema(req.body);
-    user 
+    product 
         .save()
         .then((data)=>res.json(data))
         .catch((error)=>res.json({message: error})); 
 });
 //get all products
-router.get("users",(req,res)=>{
+
+router.get("/products",(req,res)=>{
     productSchema
         .find()
         .then((data)=>res.json(data))
@@ -21,10 +23,10 @@ router.get("users",(req,res)=>{
 })
 
 //get by id product
-router.get("products/:id",(req,res)=>{
+router.get("/products/:id",(req,res)=>{
     const {id}=req.params;
     productSchema
-        .findById()
+        .findById(req.params.id)
         .then((data)=>res.json(data))
         .catch((error)=>res.json({message:error}))
 });
