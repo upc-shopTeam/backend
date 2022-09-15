@@ -20,7 +20,7 @@ const swaggerSpec = {
             }
         ]
     },
-    apis:["./routes/product.js"]
+    apis:[`${path.join(__dirname,"./routes/*.js")}`]
 };
 
 //settings
