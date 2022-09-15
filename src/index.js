@@ -19,7 +19,7 @@ const swaggerSpec = {
         },
         servers: [
             {
-                url:"http://localhost:9000"
+                url:"https://express-shopapi.herokuapp.com/"
             }
         ]
     },
