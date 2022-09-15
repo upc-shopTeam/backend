@@ -28,7 +28,7 @@ const swaggerSpec = {
 
 //settings
 const app = express()
-const port = process.env.PORT || 9000;
+const PORT = process.env.PORT || 9000;
 
 //middlewares
 app.use(express.json())
@@ -51,4 +51,4 @@ mongoose
     .catch((error)=> console.error(error));
 
 //server listening
-app.listen(port,()=>console.log("Server listening to",port));    
+app.listen(PORT,()=>console.log("Server listening to",PORT));    
