@@ -1,7 +1,5 @@
-const { request } = require("express");
 const express = require("express");
 const customerSchema = require("../models/Customer")
-
 const router = express.Router()
 
 /**
