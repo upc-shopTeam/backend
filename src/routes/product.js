@@ -1,8 +1,6 @@
-const express = require("express");
-const productSchema = require("../models/Product")
-
+const express = require('express')
 const router = express.Router()
-
+const productController = require('../controllers/productController')
 /**
  * @swagger
  * components:
@@ -36,17 +34,34 @@ const router = express.Router()
  *         img: www.image.com
  *         price: 30
  *         stock: 10
- *           
+ *
  */
- /**
+/**
   * @swagger
   * tags:
   *   name: Products
   *   description: REST api products
-  */ 
-
- //Post product
- /**
+  */
+// get all products
+/**
+ * @swagger
+ * /api/products:
+ *   get:
+ *     summary: Returns the list of all the products
+ *     tags: [Products]
+ *     responses:
+ *       200:
+ *         description: The list of the products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/products'
+ */
+router.get('/', productController.getProducts)
+// Post product
+/**
  * @swagger
  * /api/products:
  *   post:
@@ -68,41 +83,9 @@ const router = express.Router()
  *       500:
  *         description: Some server error
  */
+router.post('/', productController.getProducts)
 
-router.post("/products",(req, res)=>{
-    const product = productSchema(req.body);
-    product 
-        .save()
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error})); 
-});
-//get all products
-/**
- * @swagger
- * /api/products:
- *   get:
- *     summary: Returns the list of all the products
- *     tags: [Products]
- *     responses:
- *       200:
- *         description: The list of the products
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/products'
- */
-router.get("/products",(req,res)=>{
-    productSchema
-        .find()
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error})); 
-
-})
-
-//get by id product
-
+// get by id product
 /**
  * @swagger
  * /api/products/{id}:
@@ -126,17 +109,9 @@ router.get("/products",(req,res)=>{
  *       404:
  *         description: The book was not found
  */
-router.get("/products/:id",(req,res)=>{
-    const {id}=req.params;
-    productSchema
-        .findById(req.params.id)
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message:error}))
-});
+router.get('/:id', productController.getProductById)
 
-
-//update Product
-
+// update Product
 /**
  * @swagger
  * /api/products/{id}:
@@ -168,17 +143,9 @@ router.get("/products/:id",(req,res)=>{
  *      500:
  *        description: Some error happened
  */
-router.put("/products/:id",(req,res)=>{
-    const{id}=req.params
-    const { name,img,price,stock} =req.body
-    productSchema
-        .updateOne({_id:id},{$set:{name,img,price,stock}})
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error}))
-});
+router.put('/:id', productController.updateProduct)
 
-//delete product
-
+// delete product
 /**
  * @swagger
  * /api/products/{id}:
@@ -192,7 +159,7 @@ router.put("/products/:id",(req,res)=>{
  *           type: string
  *         required: true
  *         description: The product id
- * 
+ *
  *     responses:
  *      200:
  *        description: The products was updated
@@ -205,12 +172,5 @@ router.put("/products/:id",(req,res)=>{
  *      500:
  *        description: Some error happened
  */
-router.delete("/products/:id",(req,res)=>{
-    const{id}=req.params
-    productSchema
-        .remove()
-        .then((data)=>res.json(data))
-        .catch((error)=> res.json({message:error}))
-});
-module.exports=router;
-
+router.delete('/:id', productController.deleteProduct)
+module.exports = router

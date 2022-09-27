@@ -1,54 +1,54 @@
-const express = require("express")
-const mongoose = require("mongoose")
-require("dotenv").config();
-const productRoute = require("./routes/product")
-const employeeRoute = require("./routes/employee")
-const customerRoute = require("./routes/customer")
-const orderRoute = require("./routes/order")
-const path = require("path")
-
-//swagger
-const swaggerUI = require("swagger-ui-express")
-const swaggerJsDoc = require("swagger-jsdoc")
+const express = require('express')
+const mongoose = require('mongoose')
+require('dotenv').config()
+const path = require('path')
+const router = require('./routes/indexRouter')
+// swagger
+const swaggerUI = require('swagger-ui-express')
+const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerSpec = {
-    definition: {
-        openapi:"3.0.0",
-        info:{
-            title: "shop-api",
-            version: "1.0.0"
-        },
-        servers: [
-            {
-                url:"https://express-shopapi.herokuapp.com/"
-            }
-        ]
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'shop-api',
+      version: '1.0.0'
     },
-    apis:[`${path.join(__dirname,"./routes/*.js")}`]
-};
+    servers: [
+      {
+        // url: 'https://express-shopapi.herokuapp.com/',
+        url: 'http://localhost:9000/'
+      }
+    ]
+  },
+  apis: [`${path.join(__dirname, './routes/*.js')}`]
+}
 
-//settings
+// settings
 const app = express()
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 9000
 
-//middlewares
+// middlewares
 app.use(express.json())
-app.use("/api",employeeRoute);
-app.use("/api",productRoute);
-app.use("/api",customerRoute);
-app.use("/api",orderRoute);
+router(app)
 
-app.use("/api-doc",swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
+// app.use('/api', employeeRoute)
+// app.use('/api', productRoute)
+// app.use('/api', customerRoute)
+// app.use('/api', orderRoute)
 
-//routes
-app.get("/",(req,res)=>{
-    res.send("welcome Shop Team API")
-});
-const MONGODB=process.env.MONGODB_URI
-//mongodb
+app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
+
+// routes
+app.get('/', (req, res) => {
+  res.send('welcome Shop Team API')
+})
+// mongodb
+const MONGODB = process.env.MONGODB_URI
+
 mongoose
-    .connect(MONGODB)
-    .then(()=>console.log("connected to mongodb"))
-    .catch((error)=> console.error(error));
+  .connect(MONGODB)
+  .then(() => console.log('connected to mongodb'))
+  .catch((error) => console.error(error))
 
-//server listening
-app.listen(PORT,()=>console.log("Server listening to",PORT));    
+// server listening
+app.listen(PORT, () => console.log('Server listening to', PORT))

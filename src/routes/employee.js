@@ -1,5 +1,5 @@
-const express = require("express");
-const employeeSchema = require("../models/Employee")
+const express = require('express')
+const employeeSchema = require('../models/Employee')
 
 const router = express.Router()
 
@@ -45,18 +45,18 @@ const router = express.Router()
  *         hireDate: 05/01/2021
  *         photo: www.image.com
  *         numberPhone: 988471525
- *        
- *           
+ *
+ *
  */
- /**
+/**
   * @swagger
   * tags:
   *   name: Employees
   *   description: REST api employees
-  */ 
+  */
 
- //Post employees
- /**
+// Post employees
+/**
  * @swagger
  * /api/employees:
  *   post:
@@ -79,14 +79,14 @@ const router = express.Router()
  *         description: Some server error
  */
 
-router.post("/employees",(req, res)=>{
-    const employee = employeeSchema(req.body);
-    employee 
-        .save()
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error})); 
-});
-//get all employees
+router.post('/employees', (req, res) => {
+  const employee = employeeSchema(req.body)
+  employee
+    .save()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
+// get all employees
 /**
  * @swagger
  * /api/employees:
@@ -103,15 +103,14 @@ router.post("/employees",(req, res)=>{
  *               items:
  *                 $ref: '#/components/schemas/employees'
  */
-router.get("/employees",(req,res)=>{
-    employeeSchema
-        .find()
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error})); 
-
+router.get('/employees', (req, res) => {
+  employeeSchema
+    .find()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
 })
 
-//get by id employee
+// get by id employee
 
 /**
  * @swagger
@@ -136,16 +135,15 @@ router.get("/employees",(req,res)=>{
  *       404:
  *         description: The book was not found
  */
-router.get("/employees/:id",(req,res)=>{
-    const {id}=req.params;
-    employeeSchema
-        .findById(req.params.id)
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message:error}))
-});
+router.get('/employees/:id', (req, res) => {
+  const { id } = req.params
+  employeeSchema
+    .findById(req.params.id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
 
-
-//update employee
+// update employee
 
 /**
  * @swagger
@@ -178,16 +176,16 @@ router.get("/employees/:id",(req,res)=>{
  *      500:
  *        description: Some error happened
  */
-router.put("/employees/:id",(req,res)=>{
-    const{id}=req.params
-    const { firstName,lastName,hireDate,photo,numberPhone} =req.body
-    employeeSchema
-        .updateOne({_id:id},{$set:{firstName,lastName,hireDate,photo,numberPhone}})
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error}))
-});
+router.put('/employees/:id', (req, res) => {
+  const { id } = req.params
+  const { firstName, lastName, hireDate, photo, numberPhone } = req.body
+  employeeSchema
+    .updateOne({ _id: id }, { $set: { firstName, lastName, hireDate, photo, numberPhone } })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
 
-//delete employee
+// delete employee
 
 /**
  * @swagger
@@ -202,7 +200,7 @@ router.put("/employees/:id",(req,res)=>{
  *           type: string
  *         required: true
  *         description: The employee id
- * 
+ *
  *     responses:
  *      200:
  *        description: The book was updated
@@ -215,12 +213,11 @@ router.put("/employees/:id",(req,res)=>{
  *      500:
  *        description: Some error happened
  */
-router.delete("/employees/:id",(req,res)=>{
-    const{id}=req.params
-    employeeSchema
-        .remove()
-        .then((data)=>res.json(data))
-        .catch((error)=> res.json({message:error}))
-});
-module.exports=router;
-
+router.delete('/employees/:id', (req, res) => {
+  const { id } = req.params
+  employeeSchema
+    .remove()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
+module.exports = router

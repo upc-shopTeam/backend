@@ -1,5 +1,5 @@
-const express = require("express");
-const orderSchema = require("../models/Order")
+const express = require('express')
+const orderSchema = require('../models/Order')
 
 const router = express.Router()
 
@@ -35,19 +35,19 @@ const router = express.Router()
  *         employeeId: sewr132
  *         orderDate: 02/07/2021
  *         description: lorem lore ds lore a releos
- *        
- *           
+ *
+ *
  */
 
- /**
+/**
   * @swagger
   * tags:
   *   name: Orders
   *   description: REST api orders
-  */ 
+  */
 
- //Post orders
- /**
+// Post orders
+/**
  * @swagger
  * /api/orders:
  *   post:
@@ -70,14 +70,14 @@ const router = express.Router()
  *         description: Some server error
  */
 
-router.post("/orders",(req, res)=>{
-    const order = orderSchema(req.body);
-    order 
-        .save()
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error})); 
-});
-//get all orders
+router.post('/orders', (req, res) => {
+  const order = orderSchema(req.body)
+  order
+    .save()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
+// get all orders
 /**
  * @swagger
  * /api/orders:
@@ -94,15 +94,14 @@ router.post("/orders",(req, res)=>{
  *               items:
  *                 $ref: '#/components/schemas/orders'
  */
-router.get("/orders",(req,res)=>{
-    orderSchema
-        .find()
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error})); 
-
+router.get('/orders', (req, res) => {
+  orderSchema
+    .find()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
 })
 
-//get by id order
+// get by id order
 
 /**
  * @swagger
@@ -127,16 +126,15 @@ router.get("/orders",(req,res)=>{
  *       404:
  *         description: The order was not found
  */
-router.get("/orders/:id",(req,res)=>{
-    const {id}=req.params;
-    orderSchema
-        .findById(req.params.id)
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message:error}))
-});
+router.get('/orders/:id', (req, res) => {
+  const { id } = req.params
+  orderSchema
+    .findById(req.params.id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
 
-
-//update order
+// update order
 
 /**
  * @swagger
@@ -169,16 +167,16 @@ router.get("/orders/:id",(req,res)=>{
  *      500:
  *        description: Some error happened
  */
-router.put("/orders/:id",(req,res)=>{
-    const{id}=req.params
-    const { customerId,employeeId,orderDate,description} =req.body
-    orderSchema
-        .updateOne({_id:id},{$set:{customerId,employeeId,orderDate,description}})
-        .then((data)=>res.json(data))
-        .catch((error)=>res.json({message: error}))
-});
+router.put('/orders/:id', (req, res) => {
+  const { id } = req.params
+  const { customerId, employeeId, orderDate, description } = req.body
+  orderSchema
+    .updateOne({ _id: id }, { $set: { customerId, employeeId, orderDate, description } })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
 
-//delete orders
+// delete orders
 
 /**
  * @swagger
@@ -193,7 +191,7 @@ router.put("/orders/:id",(req,res)=>{
  *           type: string
  *         required: true
  *         description: The order id
- * 
+ *
  *     responses:
  *      200:
  *        description: The order was updated
@@ -206,12 +204,11 @@ router.put("/orders/:id",(req,res)=>{
  *      500:
  *        description: Some error happened
  */
-router.delete("/orders/:id",(req,res)=>{
-    const{id}=req.params
-    orderSchema
-        .remove()
-        .then((data)=>res.json(data))
-        .catch((error)=> res.json({message:error}))
-});
-module.exports=router;
-
+router.delete('/orders/:id', (req, res) => {
+  const { id } = req.params
+  orderSchema
+    .remove()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }))
+})
+module.exports = router

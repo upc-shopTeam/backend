@@ -17,6 +17,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    'no-unused-expressions': RULES.WARN
+    'no-unused-expressions': RULES.WARN,
+    'no-unused-vars': RULES.WARN
   }
 }
