@@ -5,7 +5,7 @@ const productSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  unitePrice: {
+  unitPrice: {
     type: Number,
     require: true
   },
@@ -20,7 +20,11 @@ const productSchema = mongoose.Schema({
   img: {
     type: String,
     require: true
+  },
+  campus: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Campus'
   }
 })
 
-module.exports = mongoose.model('Product', productSchema)
+module.exports = mongoose.model('Products', productSchema)

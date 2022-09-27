@@ -1,9 +1,10 @@
 const productSchema = require('../models/Product')
 const addProduct = async (req, res) => {
   try {
-    await productSchema.create(req.body)
+    const product = await productSchema.create(req.body)
     res.status(200).json({
-      msg: 'Product created'
+      msg: 'Product created',
+      data: product
     })
   } catch (e) {
     res.status(400).json({

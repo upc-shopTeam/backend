@@ -83,7 +83,7 @@ router.get('/', productController.getProducts)
  *       500:
  *         description: Some server error
  */
-router.post('/', productController.getProducts)
+router.post('/', productController.addProduct)
 
 // get by id product
 /**
@@ -173,4 +173,5 @@ router.put('/:id', productController.updateProduct)
  *        description: Some error happened
  */
 router.delete('/:id', productController.deleteProduct)
+
 module.exports = router

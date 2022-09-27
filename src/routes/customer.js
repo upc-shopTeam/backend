@@ -73,7 +73,7 @@ const router = express.Router()
  *         description: Some server error
  */
 
-router.post('/customers', (req, res) => {
+router.post('/', (req, res) => {
   const customer = customerSchema(req.body)
   customer
     .save()
@@ -97,7 +97,7 @@ router.post('/customers', (req, res) => {
  *               items:
  *                 $ref: '#/components/schemas/customers'
  */
-router.get('/customers', (req, res) => {
+router.get('/', (req, res) => {
   customerSchema
     .find()
     .then((data) => res.json(data))
