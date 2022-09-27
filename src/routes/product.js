@@ -173,5 +173,4 @@ router.put('/:id', productController.updateProduct)
  *        description: Some error happened
  */
 router.delete('/:id', productController.deleteProduct)
-
 module.exports = router

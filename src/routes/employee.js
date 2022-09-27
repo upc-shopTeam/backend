@@ -1,5 +1,5 @@
 const express = require('express')
-const employeeSchema = require('../models/Employee')
+const employeeControllers = require('../controllers/employeeController')
 
 const router = express.Router()
 
@@ -79,13 +79,7 @@ const router = express.Router()
  *         description: Some server error
  */
 
-router.post('/employees', (req, res) => {
-  const employee = employeeSchema(req.body)
-  employee
-    .save()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.post('/', employeeControllers.addEmployee)
 // get all employees
 /**
  * @swagger
@@ -103,12 +97,7 @@ router.post('/employees', (req, res) => {
  *               items:
  *                 $ref: '#/components/schemas/employees'
  */
-router.get('/employees', (req, res) => {
-  employeeSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.get('/', employeeControllers.getEmployees)
 
 // get by id employee
 
@@ -135,13 +124,7 @@ router.get('/employees', (req, res) => {
  *       404:
  *         description: The book was not found
  */
-router.get('/employees/:id', (req, res) => {
-  const { id } = req.params
-  employeeSchema
-    .findById(req.params.id)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.get('/:id', employeeControllers.getEmployeeById)
 
 // update employee
 
@@ -176,14 +159,7 @@ router.get('/employees/:id', (req, res) => {
  *      500:
  *        description: Some error happened
  */
-router.put('/employees/:id', (req, res) => {
-  const { id } = req.params
-  const { firstName, lastName, hireDate, photo, numberPhone } = req.body
-  employeeSchema
-    .updateOne({ _id: id }, { $set: { firstName, lastName, hireDate, photo, numberPhone } })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.put('/:id', employeeControllers.updateEmployee)
 
 // delete employee
 
@@ -213,11 +189,7 @@ router.put('/employees/:id', (req, res) => {
  *      500:
  *        description: Some error happened
  */
-router.delete('/employees/:id', (req, res) => {
-  const { id } = req.params
-  employeeSchema
-    .remove()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.delete('/:id', employeeControllers.deleteEmployee)
+router.get('/:id/invoices', employeeControllers.getInvoiceByEmployeeId)
+
 module.exports = router

@@ -24,6 +24,10 @@ const productSchema = mongoose.Schema({
   campus: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Campus'
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
   }
 })
 

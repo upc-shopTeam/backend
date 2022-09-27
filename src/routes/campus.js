@@ -8,6 +8,7 @@ router.get('/', campusController.getCampus)
 router.post('/', campusController.addCampus)
 router.get('/:id', campusController.getCampusById)
 router.get('/:id/products', campusController.getProductsByCampusId)
+router.get('/:id/employees', campusController.getEmployeesByCampusId)
 
 router.put('/:id', campusController.updateCampus)
 router.delete('/:id', campusController.deleteCampus)

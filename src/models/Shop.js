@@ -1,18 +1,18 @@
-
 const mongoose = require('mongoose')
 
-const campusSchema = mongoose.Schema({
+const shopSchema = mongoose.Schema({
   name: {
     type: String,
     require: true
   },
-  address: {
+  ruc: {
     type: String,
     require: true
   },
-  shop: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'shop'
+    ref: 'Owner'
   }
 })
-module.exports = mongoose.model('Campus', campusSchema)
+
+module.exports = mongoose.model('Shop', shopSchema)

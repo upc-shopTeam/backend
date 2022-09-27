@@ -1,5 +1,5 @@
 const express = require('express')
-const customerSchema = require('../models/Customer')
+const customerController = require('../controllers/customerController')
 const router = express.Router()
 
 /**
@@ -73,13 +73,7 @@ const router = express.Router()
  *         description: Some server error
  */
 
-router.post('/', (req, res) => {
-  const customer = customerSchema(req.body)
-  customer
-    .save()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.post('/', customerController.addCustomer)
 // get all customers
 /**
  * @swagger
@@ -97,12 +91,7 @@ router.post('/', (req, res) => {
  *               items:
  *                 $ref: '#/components/schemas/customers'
  */
-router.get('/', (req, res) => {
-  customerSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.get('/', customerController.getCustomer)
 
 // get by id customer
 
@@ -129,13 +118,7 @@ router.get('/', (req, res) => {
  *       404:
  *         description: The customer was not found
  */
-router.get('/customers/:id', (req, res) => {
-  const { id } = req.params
-  customerSchema
-    .findById(req.params.id)
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.get('/:id', customerController.getCustomerById)
 
 // update customer
 
@@ -170,14 +153,7 @@ router.get('/customers/:id', (req, res) => {
  *      500:
  *        description: Some error happened
  */
-router.put('/customers/:id', (req, res) => {
-  const { id } = req.params
-  const { firstName, lastName, photo, numberPhone } = req.body
-  customerSchema
-    .updateOne({ _id: id }, { $set: { firstName, lastName, photo, numberPhone } })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.put('/:id', customerController.updateCustomer)
 
 // delete customer
 
@@ -207,11 +183,8 @@ router.put('/customers/:id', (req, res) => {
  *      500:
  *        description: Some error happened
  */
-router.delete('/customers/:id', (req, res) => {
-  const { id } = req.params.id
-  customerSchema
-    .remove({ id: req.params.id })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }))
-})
+router.delete('/:id', customerController.deleteCustomer)
+
+router.get('/:id/invoices', customerController.getInvoicesByCustomerId)
+
 module.exports = router

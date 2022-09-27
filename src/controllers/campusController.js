@@ -1,5 +1,6 @@
 const campusSchema = require('../models/Campus')
 const productSchema = require('../models/Product')
+const employeeSchema = require('../models/Employee')
 const addCampus = async (req, res) => {
   try {
     const campus = await campusSchema.create(req.body)
@@ -15,9 +16,9 @@ const addCampus = async (req, res) => {
 }
 const getCampus = async (req, res) => {
   try {
-    const products = await campusSchema.find()
+    const campus = await campusSchema.find()
     res.status(200).json({
-      products
+      campus
     })
   } catch (e) {
     res.status(400).json({
@@ -38,6 +39,7 @@ const getCampusById = async (req, res) => {
     })
   }
 }
+
 const updateCampus = async (req, res) => {
   const { id } = req.params
   try {
@@ -79,11 +81,25 @@ const getProductsByCampusId = async (req, res) => {
     })
   }
 }
+const getEmployeesByCampusId = async (req, res) => {
+  const { id } = req.params
+  try {
+    const employees = await employeeSchema.find({ campus: id })
+    return res.status(200).json({
+      employees
+    })
+  } catch (e) {
+    return res.status(401).json({
+      msg: e
+    })
+  }
+}
 module.exports = {
   addCampus,
   getCampus,
   getCampusById,
   updateCampus,
   deleteCampus,
-  getProductsByCampusId
+  getProductsByCampusId,
+  getEmployeesByCampusId
 }

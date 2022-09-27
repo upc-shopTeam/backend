@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const customerSchema = mongoose.Schema({
+const ownerSchema = mongoose.Schema({
   name: {
     type: String,
     require: true
@@ -13,10 +13,10 @@ const customerSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  phoneNumber: {
+  password: {
     type: String,
     require: true
   }
-
 })
-module.exports = mongoose.model('Customers', customerSchema)
+
+module.exports = mongoose.model('Owners', ownerSchema)

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const employeeSchema = mongoose.Schema({
-  firstName: {
+  name: {
     type: String,
     require: true
   },
@@ -13,6 +13,10 @@ const employeeSchema = mongoose.Schema({
     type: String,
     require: true
   },
+  password: {
+    type: String,
+    require: true
+  },
   hireDate: {
     type: String,
     require: true
@@ -21,9 +25,13 @@ const employeeSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  numberPhone: {
+  phoneNumber: {
     type: String,
     require: true
+  },
+  campus: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Campus'
   }
 
 })
