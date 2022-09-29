@@ -15,9 +15,9 @@ const addProduct = async (req, res) => {
 const getProducts = async (req, res) => {
   try {
     const products = await productSchema.find()
-    res.status(200).json({
+    res.status(200).json(
       products
-    })
+    )
   } catch (e) {
     res.status(400).json({
       msg: e

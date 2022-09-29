@@ -16,6 +16,10 @@ const customerSchema = mongoose.Schema({
   phoneNumber: {
     type: String,
     require: true
+  },
+  photo: {
+    type: String,
+    require: true
   }
 
 })

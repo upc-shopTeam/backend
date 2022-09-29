@@ -29,6 +29,7 @@ const PORT = process.env.PORT || 9000
 
 // middlewares
 app.use(express.json())
+
 router(app)
 
 // app.use('/api', employeeRoute)

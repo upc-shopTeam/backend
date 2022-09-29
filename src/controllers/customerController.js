@@ -15,10 +15,10 @@ const addCustomer = async (req, res) => {
 }
 const getCustomer = async (req, res) => {
   try {
-    const customers = await customerSchema.find()
-    res.status(200).json({
+    const customers = await customerSchema.find({})
+    res.status(200).json(
       customers
-    })
+    )
   } catch (e) {
     res.status(400).json({
       msg: e
