@@ -17,9 +17,9 @@ const addShop = async (req, res) => {
 const getShops = async (req, res) => {
   try {
     const shops = await shopSchema.find()
-    res.status(200).json({
+    res.status(200).json(
       shops
-    })
+    )
   } catch (e) {
     res.status(400).json({
       msg: e
@@ -30,9 +30,9 @@ const getShopById = async (req, res) => {
   const { id } = req.params
   try {
     const shop = await shopSchema.findById(id)
-    return res.status(200).json({
+    return res.status(200).json(
       shop
-    })
+    )
   } catch (e) {
     return res.status(400).json({
       msg: e
@@ -71,9 +71,9 @@ const getCampusByShopId = async (req, res) => {
   const { id } = req.params
   try {
     const campus = await campusSchema.find({ shop: id })
-    return res.status(200).json({
+    return res.status(200).json(
       campus
-    })
+    )
   } catch (e) {
     return res.status(401).json({
       msg: e
