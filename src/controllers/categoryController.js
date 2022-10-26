@@ -71,9 +71,9 @@ const getProductsByCategoryId = async (req, res) => {
   const { id } = req.params
   try {
     const products = await productSchema.find({ category: id })
-    return res.status(200).json({
+    return res.status(200).json(
       products
-    })
+    )
   } catch (e) {
     return res.status(401).json({
       msg: e

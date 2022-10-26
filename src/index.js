@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const path = require('path')
 const router = require('./routes/indexRouter')
+
 // swagger
 const swaggerUI = require('swagger-ui-express')
 const swaggerJsDoc = require('swagger-jsdoc')
@@ -29,20 +30,12 @@ const PORT = process.env.PORT || 9000
 
 // middlewares
 app.use(express.json())
-
 router(app)
-
-// app.use('/api', employeeRoute)
-// app.use('/api', productRoute)
-// app.use('/api', customerRoute)
-// app.use('/api', orderRoute)
-
 app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
-
-// routes
 app.get('/', (req, res) => {
-  res.send('welcome Shop Team API')
+  res.send('Welcome Shop Team API')
 })
+
 // mongodb
 const MONGODB = process.env.MONGODB_URI
 
