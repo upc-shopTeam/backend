@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const path = require('path')
 const router = require('./routes/indexRouter')
+const { checkApiKey } = require('./middlewares/auth.handler')
 
 // swagger
 const swaggerUI = require('swagger-ui-express')
@@ -32,7 +33,8 @@ const PORT = process.env.PORT || 9000
 app.use(express.json())
 router(app)
 app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
-app.get('/', (req, res) => {
+require('./utils/auth')
+app.get('/', checkApiKey, (req, res) => {
   res.send('Welcome Shop Team API')
 })
 
