@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const mongoose = require('mongoose')
 
 const ownerSchema = mongoose.Schema({
@@ -16,7 +17,10 @@ const ownerSchema = mongoose.Schema({
   password: {
     type: String,
     require: true
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
-
 module.exports = mongoose.model('Owners', ownerSchema)
