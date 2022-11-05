@@ -32,7 +32,10 @@ const employeeSchema = mongoose.Schema({
   campus: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Campus'
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
-
 })
 module.exports = mongoose.model('Employees', employeeSchema)
