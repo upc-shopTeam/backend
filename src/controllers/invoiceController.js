@@ -16,9 +16,9 @@ const addInvoice = async (req, res) => {
 const getInvoice = async (req, res) => {
   try {
     const invoices = await invoiceSchema.find()
-    res.status(200).json({
+    res.status(200).json(
       invoices
-    })
+    )
   } catch (e) {
     res.status(400).json({
       msg: e
@@ -29,9 +29,9 @@ const getInvoiceById = async (req, res) => {
   const { id } = req.params
   try {
     const invoice = await invoiceSchema.findById(id)
-    return res.status(200).json({
+    return res.status(200).json(
       invoice
-    })
+    )
   } catch (e) {
     return res.status(400).json({
       msg: e
@@ -71,9 +71,9 @@ const getInvoiceItemsByInvoiceId = async (req, res) => {
   const { id } = req.params
   try {
     const invoiceItems = await invoiceItemSchema.find({ invoice: id })
-    return res.status(200).json({
+    return res.status(200).json(
       invoiceItems
-    })
+    )
   } catch (e) {
     return res.status(401).json({
       msg: e
