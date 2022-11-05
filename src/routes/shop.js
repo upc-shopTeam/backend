@@ -6,6 +6,7 @@ router.get('/', shopController.getShops)
 router.post('/', shopController.addShop)
 router.get('/:id', shopController.getShopById)
 router.get('/:id/campus', shopController.getCampusByShopId)
+router.get('/:id/products', shopController.getProductsByShop)
 router.put('/:id', shopController.updateShop)
 router.delete('/:id', shopController.deleteShop)
 
