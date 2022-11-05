@@ -1,6 +1,6 @@
 const shopSchema = require('../models/Shop')
 const campusSchema = require('../models/Campus')
-
+const productSchema = require('../models/Product')
 const addShop = async (req, res) => {
   try {
     const shop = await shopSchema.create(req.body)
@@ -81,11 +81,27 @@ const getCampusByShopId = async (req, res) => {
   }
 }
 
+const getProductsByShop = async (req, res) => {
+  const { id } = req.params
+  try {
+    const campus = await campusSchema.find({ shop: id })
+    const products = await productSchema.find({ campus: campus })
+    return res.status(200).json(
+      products
+    )
+  } catch (e) {
+    return res.status(401).json({
+      msg: e
+    })
+  }
+}
+
 module.exports = {
   addShop,
   getShops,
   getShopById,
   updateShop,
   deleteShop,
-  getCampusByShopId
+  getCampusByShopId,
+  getProductsByShop
 }
