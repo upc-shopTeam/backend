@@ -29,9 +29,9 @@ const getCustomerById = async (req, res) => {
   const { id } = req.params
   try {
     const customer = await customerSchema.findById(id)
-    return res.status(200).json({
+    return res.status(200).json(
       customer
-    })
+    )
   } catch (e) {
     return res.status(400).json({
       msg: e
@@ -71,9 +71,9 @@ const getInvoicesByCustomerId = async (req, res) => {
   const { id } = req.params
   try {
     const invoices = await invoiceSchema.find({ customer: id })
-    return res.status(200).json({
+    return res.status(200).json(
       invoices
-    })
+    )
   } catch (e) {
     return res.status(401).json({
       msg: e

@@ -17,9 +17,9 @@ const addEmployee = async (req, res) => {
 const getEmployees = async (req, res) => {
   try {
     const employees = await employeeSchema.find()
-    res.status(200).json({
+    res.status(200).json(
       employees
-    })
+    )
   } catch (e) {
     res.status(400).json({
       msg: e
@@ -30,9 +30,9 @@ const getEmployeeById = async (req, res) => {
   const { id } = req.params
   try {
     const employee = await employeeSchema.findById(id)
-    return res.status(200).json({
+    return res.status(200).json(
       employee
-    })
+    )
   } catch (e) {
     return res.status(400).json({
       msg: e
@@ -72,9 +72,9 @@ const getInvoiceByEmployeeId = async (req, res) => {
   const { id } = req.params
   try {
     const invoices = await invoiceSchema.find({ employee: id })
-    return res.status(200).json({
+    return res.status(200).json(
       invoices
-    })
+    )
   } catch (e) {
     return res.status(401).json({
       msg: e

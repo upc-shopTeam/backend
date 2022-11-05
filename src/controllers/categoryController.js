@@ -29,9 +29,9 @@ const getCategoryById = async (req, res) => {
   const { id } = req.params
   try {
     const category = await categorySchema.findById(id)
-    return res.status(200).json({
+    return res.status(200).json(
       category
-    })
+    )
   } catch (e) {
     return res.status(400).json({
       msg: e
