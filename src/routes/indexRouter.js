@@ -6,9 +6,9 @@ const shopRoute = require('./shop')
 const categoryRoute = require('./category')
 const employeeRoute = require('./employee')
 const invoiceRoute = require('./invoice')
-const invoiceItemRoute = require('./invoiceItem')
 const userRoute = require('./user')
 const authRoute = require('./auth')
+const saleRoute = require('./sale')
 const routes = (app) => {
   app.use('/api/products', productRoute)
   app.use('/api/campus', campusRoute)
@@ -18,9 +18,9 @@ const routes = (app) => {
   app.use('/api/category', categoryRoute)
   app.use('/api/employee', employeeRoute)
   app.use('/api/invoices', invoiceRoute)
-  app.use('/api/invoiceItems', invoiceItemRoute)
   app.use('/api/users', userRoute)
   app.use('/api/auth', authRoute)
+  app.use('/api/sale', saleRoute)
 }
 
 module.exports = routes

@@ -33,8 +33,8 @@ const PORT = process.env.PORT || 9000
 app.use(express.json())
 router(app)
 app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
-require('./utils/auth')
-app.get('/', checkApiKey, (req, res) => {
+// require('./utils/auth')
+app.get('/', (req, res) => {
   res.send('Welcome Shop Team API')
 })
 
