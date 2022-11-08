@@ -81,9 +81,12 @@ const router = express.Router()
  *         description: Some server error
  */
 
+// router.post('/',
+// passport.authenticate('jwt', { session: false }),
+// checkRoles('admin', 'owner'),
+// employeeControllers.addEmployee)
+
 router.post('/',
-  passport.authenticate('jwt', { session: false }),
-  checkRoles('admin', 'owner'),
   employeeControllers.addEmployee)
 // get all employees
 /**

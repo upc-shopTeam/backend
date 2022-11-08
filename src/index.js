@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const path = require('path')
 const router = require('./routes/indexRouter')
-const { checkApiKey } = require('./middlewares/auth.handler')
+// const { checkApiKey } = require('./middlewares/auth.handler')
 
 // swagger
 const swaggerUI = require('swagger-ui-express')
