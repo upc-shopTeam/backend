@@ -13,10 +13,6 @@ const productSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  stock: {
-    type: Number,
-    require: true
-  },
   img: {
     type: String,
     require: true
@@ -28,6 +24,14 @@ const productSchema = mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'
+  },
+  initialAmount: {
+    type: Number,
+    require: true
+  },
+  currentAmount: {
+    type: Number,
+    require: true
   }
 })
 
