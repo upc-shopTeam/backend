@@ -4,17 +4,9 @@ const saleSchema = mongoose.Schema({
     type: Number,
     require: true
   },
-  total: {
-    type: Number,
-    require: true
-  },
   product: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product'
-  },
-  nameProduct: {
-    type: String,
-    require: true
   }
 })
 module.exports = mongoose.model('Sale', saleSchema)

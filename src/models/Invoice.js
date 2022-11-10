@@ -19,16 +19,20 @@ const invoiceSchema = mongoose.Schema({
     require: true
   },
   sales: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: 'Sale'
-  },
-  paymentCustomer: {
-    type: Number,
-    require: true
-  },
-  turned: {
-    type: Number,
-    require: false
+    type: [{
+      nameProduct: {
+        type: String
+      },
+      amount: {
+        type: Number
+      },
+      unitPrice: {
+        type: Number
+      },
+      subTotal: {
+        type: Number
+      }
+    }]
   },
   totalPayment: {
     type: Number,

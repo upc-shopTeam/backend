@@ -1,20 +1,9 @@
 const invoiceSchema = require('../models/Invoice')
-const saleSchema = require('../models/Sale')
 const createInvoice = async (req, res) => {
   try {
-    let sumOfPrices = 0
-    const array = req.body.sales
-    for (let index = 0; index < array.length; index++) {
-      const element = array[index]
-      const sales = await saleSchema.findById(element)
-      sumOfPrices += sales.total
-    }
-    req.body.date = new Date()
-    req.body.totalPayment = sumOfPrices
-    req.body.turned = req.body.paymentCustomer - req.body.totalPayment
     const invoice = await invoiceSchema.create(req.body)
     res.status(200).json({
-      msg: 'invoice created',
+      msg: 'Invoice created',
       data: invoice
     })
   } catch (e) {
@@ -79,7 +68,7 @@ const deleteInvoice = async (req, res) => {
   }
 }
 
-const getItemsByInvoiceId = async (req, res) => {
+/* const getItemsByInvoiceId = async (req, res) => {
   const { id } = req.params
   const itemsInvoice = []
   const invoice = await invoiceSchema.findById(id)
@@ -98,13 +87,13 @@ const getItemsByInvoiceId = async (req, res) => {
       msg: error
     })
   }
-}
+} */
 
 module.exports = {
   createInvoice,
   getInvoice,
   getInvoiceById,
   updateInvoice,
-  deleteInvoice,
-  getItemsByInvoiceId
+  deleteInvoice
+  // getItemsByInvoiceId
 }

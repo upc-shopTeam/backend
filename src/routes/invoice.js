@@ -6,7 +6,7 @@ router.get('/', invoiceController.getInvoice)
 
 router.post('/', invoiceController.createInvoice)
 router.get('/:id', invoiceController.getInvoiceById)
-router.get('/:id/items', invoiceController.getItemsByInvoiceId)
+// router.get('/:id/items', invoiceController.getItemsByInvoiceId)
 router.put('/:id', invoiceController.updateInvoice)
 router.delete('/:id', invoiceController.deleteInvoice)
 
