@@ -32,6 +32,16 @@ const productSchema = mongoose.Schema({
   currentAmount: {
     type: Number,
     require: true
+  },
+  date: {
+    date: {
+      type: Date,
+      require: true
+    }
+  },
+  purchasePrice: {
+    type: Number,
+    require: true
   }
 })
 

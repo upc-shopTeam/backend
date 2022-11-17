@@ -10,7 +10,7 @@ router.post('/login',
     try {
       const user = req.user
       const payload = {
-        sub: user.id,
+        id: user.id,
         role: user.role
       }
       const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET)
