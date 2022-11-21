@@ -6,7 +6,7 @@ const employeeSchema = mongoose.Schema({
     require: true
   },
   hireDate: {
-    type: String,
+    type: Date,
     require: true
   },
   photo: {
