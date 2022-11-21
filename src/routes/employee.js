@@ -86,7 +86,7 @@ const router = express.Router()
 // checkRoles('admin', 'owner'),
 // employeeControllers.addEmployee)
 
-router.post('/',
+router.post('/sign-up',
   employeeControllers.addEmployee)
 // get all employees
 /**

@@ -1,12 +1,26 @@
 const employeeSchema = require('../models/Employee')
 const invoiceSchema = require('../models/Invoice')
+const bcrypt = require('bcrypt')
+const userSchema = require('../models/User')
 
 const addEmployee = async (req, res) => {
+  const employee = req.body
+  const pass = bcrypt.genSaltSync(10)
+  employee.password = bcrypt.hashSync(employee.password, pass)
   try {
     const employee = await employeeSchema.create(req.body)
+    const user = await userSchema.create(
+      {
+        email: employee.email,
+        password: employee.password,
+        role: 'employee',
+        dataId: employee.id
+      }
+
+    )
     res.status(200).json({
-      msg: 'employee created',
-      data: employee
+      msg: 'user created',
+      data: { employee, user }
     })
   } catch (e) {
     res.status(400).json({
