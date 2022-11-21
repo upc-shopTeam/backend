@@ -2,6 +2,7 @@ const { boom } = require('@hapi/boom')
 const bcrypt = require('bcrypt')
 const { Strategy } = require('passport-local')
 const userController = require('../../../controllers/userController')
+// const ownerController = require('../../../controllers/ownerController')
 const LocalStrategy = new Strategy({
   usernameField: 'email',
   passwordField: 'password'
