@@ -1,12 +1,27 @@
 const ownerSchema = require('../models/Owner')
-const shopSchema = require('../models/Shop')
+const productSchema = require('../models/Product')
+const invoiceSchema = require('../models/Invoice')
+const bcrypt = require('bcrypt')
+const userSchema = require('../models/User')
 
 const addOwner = async (req, res) => {
+  const owner = req.body
+  const pass = bcrypt.genSaltSync(10)
+  owner.password = bcrypt.hashSync(owner.password, pass)
   try {
     const owner = await ownerSchema.create(req.body)
+    const user = await userSchema.create(
+      {
+        email: owner.email,
+        password: owner.password,
+        role: 'owner',
+        dataId: owner.id
+      }
+
+    )
     res.status(200).json({
-      msg: 'owner created',
-      data: owner
+      msg: 'user created',
+      data: { owner, user }
     })
   } catch (e) {
     res.status(400).json({
@@ -14,6 +29,14 @@ const addOwner = async (req, res) => {
     })
   }
 }
+
+const findByEmail = async (email) => {
+  const rta = await ownerSchema.findOne(
+    { email }
+  )
+  return rta
+}
+
 const getOwner = async (req, res) => {
   try {
     const owners = await ownerSchema.find()
@@ -39,19 +62,7 @@ const getOwnerById = async (req, res) => {
     })
   }
 }
-const getShopByOwnerId = async (req, res) => {
-  const { id } = req.params
-  try {
-    const shop = await shopSchema.find({ owner: id })
-    return res.status(200).json(
-      shop
-    )
-  } catch (e) {
-    return res.status(401).json({
-      msg: e
-    })
-  }
-}
+
 const updateOwner = async (req, res) => {
   const { id } = req.params
   try {
@@ -80,13 +91,45 @@ const deleteOwner = async (req, res) => {
     })
   }
 }
+const getProductsbyOwnerId = async (req, res) => {
+  const { id } = req.params
+  try {
+    const products = await productSchema.find({ owner: id })
+    return res.status(200).json(
+      products
+    )
+  } catch (e) {
+    return res.status(401).json(
+      {
+        msg: e
+      }
+    )
+  }
+}
+const getInvoicesByOwnerId = async (req, res) => {
+  const { id } = req.params
+  try {
+    const invoices = await invoiceSchema.find({ owner: id })
+    return res.status(200).json(
+      invoices
+    )
+  } catch (e) {
+    return res.status(401).json(
+      {
+        msg: e
+      }
+    )
+  }
+}
 
 module.exports = {
   addOwner,
-
   getOwner,
   getOwnerById,
   updateOwner,
   deleteOwner,
-  getShopByOwnerId
+  getProductsbyOwnerId,
+  getInvoicesByOwnerId,
+  findByEmail
+
 }

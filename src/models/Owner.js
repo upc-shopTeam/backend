@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb')
 const mongoose = require('mongoose')
 
 const ownerSchema = mongoose.Schema({
@@ -6,7 +5,19 @@ const ownerSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  lastName: {
+  dni: {
+    type: String,
+    require: true
+  },
+  phoneNumber: {
+    type: String,
+    require: true
+  },
+  nameShop: {
+    type: String,
+    require: true
+  },
+  photo: {
     type: String,
     require: true
   },
@@ -18,9 +29,9 @@ const ownerSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+  registerDate: {
+    type: Date,
+    require: true
   }
 })
-module.exports = mongoose.model('Owners', ownerSchema)
+module.exports = mongoose.model('Owner', ownerSchema)
