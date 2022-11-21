@@ -17,9 +17,9 @@ const productSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  campus: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Campus'
+    ref: 'Owner'
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
