@@ -68,27 +68,6 @@ const deleteInvoice = async (req, res) => {
   }
 }
 
-/* const getItemsByInvoiceId = async (req, res) => {
-  const { id } = req.params
-  const itemsInvoice = []
-  const invoice = await invoiceSchema.findById(id)
-  const array = invoice.sales
-  for (let index = 0; index < array.length; index++) {
-    const element = array[index]
-    const items = await saleSchema.findById(element)
-    itemsInvoice.push(items)
-  }
-  try {
-    res.status(200).json(
-      itemsInvoice
-    )
-  } catch (error) {
-    res.status(400).json({
-      msg: error
-    })
-  }
-} */
-
 module.exports = {
   createInvoice,
   getInvoice,
