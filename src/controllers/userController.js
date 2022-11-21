@@ -5,7 +5,6 @@ const addUser = async (req, res) => {
   const user = req.body
   const pass = bcrypt.genSaltSync(10)
   user.password = bcrypt.hashSync(user.password, pass)
-
   try {
     const user = await userSchema.create(req.body)
     res.status(200).json({
