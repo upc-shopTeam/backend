@@ -6,7 +6,7 @@ const invoiceSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee'
   },
-  owner: {
+    : {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Owner'
   },

@@ -34,10 +34,8 @@ const productSchema = mongoose.Schema({
     require: true
   },
   date: {
-    date: {
-      type: Date,
-      require: true
-    }
+    type: Date,
+    require: true
   },
   purchasePrice: {
     type: Number,
