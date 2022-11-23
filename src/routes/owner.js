@@ -11,6 +11,6 @@ router.put('/:id', ownerController.updateOwner)
 router.delete('/:id', ownerController.deleteOwner)
 router.get('/:id/products', ownerController.getProductsbyOwnerId)
 router.get('/:id/invoices', ownerController.getInvoicesByOwnerId)
-router.get('/:id/employees', ownerController.getInvoicesByOwnerId)
+router.get('/:id/employees', ownerController.getEmployeeByOwnerId)
 
 module.exports = router

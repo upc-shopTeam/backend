@@ -125,9 +125,9 @@ const getInvoicesByOwnerId = async (req, res) => {
 const getEmployeeByOwnerId = async (req, res) => {
   const { id } = req.params
   try {
-    const invoices = await employeeSchema.find({ owner: id })
+    const employees = await employeeSchema.find({ owner: id })
     return res.status(200).json(
-      invoices
+      employees
     )
   } catch (e) {
     return res.status(401).json(
