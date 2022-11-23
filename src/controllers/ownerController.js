@@ -1,5 +1,6 @@
 const ownerSchema = require('../models/Owner')
 const productSchema = require('../models/Product')
+const employeeSchema = require('../models/Employee')
 const invoiceSchema = require('../models/Invoice')
 const bcrypt = require('bcrypt')
 const userSchema = require('../models/User')
@@ -121,6 +122,21 @@ const getInvoicesByOwnerId = async (req, res) => {
     )
   }
 }
+const getEmployeeByOwnerId = async (req, res) => {
+  const { id } = req.params
+  try {
+    const invoices = await employeeSchema.find({ owner: id })
+    return res.status(200).json(
+      invoices
+    )
+  } catch (e) {
+    return res.status(401).json(
+      {
+        msg: e
+      }
+    )
+  }
+}
 
 module.exports = {
   addOwner,
@@ -130,6 +146,7 @@ module.exports = {
   deleteOwner,
   getProductsbyOwnerId,
   getInvoicesByOwnerId,
-  findByEmail
+  findByEmail,
+  getEmployeeByOwnerId
 
 }
