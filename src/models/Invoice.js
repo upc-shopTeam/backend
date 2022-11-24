@@ -41,6 +41,10 @@ const invoiceSchema = mongoose.Schema({
   totalPayment: {
     type: Number,
     require: false
+  },
+  nameEmployee: {
+    type: String,
+    require: true
   }
 })
 module.exports = mongoose.model('Invoices', invoiceSchema)
