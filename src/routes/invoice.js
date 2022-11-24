@@ -2,11 +2,11 @@ const express = require('express')
 const router = express.Router()
 const invoiceController = require('../controllers/invoiceController')
 router.get('/', invoiceController.getInvoice)
-router.get('/:id/invoiceItems', invoiceController.getInvoiceItemsByInvoiceId)
+// router.get('/:id/invoiceItems', invoiceController.getInvoiceItemsByInvoiceId)
 
-router.post('/', invoiceController.addInvoice)
+router.post('/', invoiceController.createInvoice)
 router.get('/:id', invoiceController.getInvoiceById)
-
+// router.get('/:id/items', invoiceController.getItemsByInvoiceId)
 router.put('/:id', invoiceController.updateInvoice)
 router.delete('/:id', invoiceController.deleteInvoice)
 

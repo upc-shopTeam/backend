@@ -5,9 +5,25 @@ const employeeSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  lastName: {
+  hireDate: {
+    type: Date,
+    require: true
+  },
+  photo: {
     type: String,
     require: true
+  },
+  dni: {
+    type: String,
+    require: true
+  },
+  phoneNumber: {
+    type: String,
+    require: true
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Owner'
   },
   email: {
     type: String,
@@ -16,23 +32,6 @@ const employeeSchema = mongoose.Schema({
   password: {
     type: String,
     require: true
-  },
-  hireDate: {
-    type: String,
-    require: true
-  },
-  photo: {
-    type: String,
-    require: true
-  },
-  phoneNumber: {
-    type: String,
-    require: true
-  },
-  campus: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Campus'
   }
-
 })
 module.exports = mongoose.model('Employees', employeeSchema)

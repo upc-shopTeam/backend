@@ -13,21 +13,33 @@ const productSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  stock: {
-    type: Number,
-    require: true
-  },
   img: {
     type: String,
     require: true
   },
-  campus: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Campus'
+    ref: 'Owner'
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'
+  },
+  initialAmount: {
+    type: Number,
+    require: true
+  },
+  currentAmount: {
+    type: Number,
+    require: true
+  },
+  date: {
+    type: Date,
+    require: true
+  },
+  purchasePrice: {
+    type: Number,
+    require: true
   }
 })
 

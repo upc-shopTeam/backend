@@ -1,5 +1,7 @@
 const express = require('express')
 const employeeControllers = require('../controllers/employeeController')
+const { checkRoles } = require('../middlewares/auth.handler')
+const passport = require('passport')
 
 const router = express.Router()
 
@@ -79,7 +81,13 @@ const router = express.Router()
  *         description: Some server error
  */
 
-router.post('/', employeeControllers.addEmployee)
+// router.post('/',
+// passport.authenticate('jwt', { session: false }),
+// checkRoles('admin', 'owner'),
+// employeeControllers.addEmployee)
+
+router.post('/sign-up',
+  employeeControllers.addEmployee)
 // get all employees
 /**
  * @swagger

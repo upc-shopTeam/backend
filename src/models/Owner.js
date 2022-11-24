@@ -5,7 +5,19 @@ const ownerSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  lastName: {
+  dni: {
+    type: String,
+    require: true
+  },
+  phoneNumber: {
+    type: String,
+    require: true
+  },
+  nameShop: {
+    type: String,
+    require: true
+  },
+  photo: {
     type: String,
     require: true
   },
@@ -16,7 +28,10 @@ const ownerSchema = mongoose.Schema({
   password: {
     type: String,
     require: true
+  },
+  registerDate: {
+    type: Date,
+    require: true
   }
 })
-
-module.exports = mongoose.model('Owners', ownerSchema)
+module.exports = mongoose.model('Owner', ownerSchema)

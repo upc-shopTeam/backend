@@ -5,10 +5,12 @@ const ownerController = require('../controllers/ownerController')
 router.get('/', ownerController.getOwner)
 
 // post owner
-router.post('/', ownerController.addOwner)
+router.post('/sign-up', ownerController.addOwner)
 router.get('/:id', ownerController.getOwnerById)
-router.get('/:id/shop', ownerController.getShopByOwnerId)
 router.put('/:id', ownerController.updateOwner)
 router.delete('/:id', ownerController.deleteOwner)
+router.get('/:id/products', ownerController.getProductsbyOwnerId)
+router.get('/:id/invoices', ownerController.getInvoicesByOwnerId)
+router.get('/:id/employees', ownerController.getEmployeeByOwnerId)
 
 module.exports = router

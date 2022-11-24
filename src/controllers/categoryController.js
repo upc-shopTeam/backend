@@ -16,9 +16,9 @@ const addCategory = async (req, res) => {
 const getCategories = async (req, res) => {
   try {
     const categories = await categorySchema.find()
-    res.status(200).json({
+    res.status(200).json(
       categories
-    })
+    )
   } catch (e) {
     res.status(400).json({
       msg: e
@@ -29,9 +29,9 @@ const getCategoryById = async (req, res) => {
   const { id } = req.params
   try {
     const category = await categorySchema.findById(id)
-    return res.status(200).json({
+    return res.status(200).json(
       category
-    })
+    )
   } catch (e) {
     return res.status(400).json({
       msg: e
@@ -71,9 +71,9 @@ const getProductsByCategoryId = async (req, res) => {
   const { id } = req.params
   try {
     const products = await productSchema.find({ category: id })
-    return res.status(200).json({
+    return res.status(200).json(
       products
-    })
+    )
   } catch (e) {
     return res.status(401).json({
       msg: e

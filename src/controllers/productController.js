@@ -28,9 +28,9 @@ const getProductById = async (req, res) => {
   const { id } = req.params
   try {
     const product = await productSchema.findById(id)
-    return res.status(200).json({
+    return res.status(200).json(
       product
-    })
+    )
   } catch (e) {
     return res.status(400).json({
       msg: e
@@ -65,6 +65,8 @@ const deleteProduct = async (req, res) => {
     })
   }
 }
+
+// /products/id/sale
 
 module.exports = {
   addProduct,
